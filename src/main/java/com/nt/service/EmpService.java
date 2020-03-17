@@ -22,4 +22,8 @@ public class EmpService {
 	public boolean delete(Employee e) {
 		return dao.delete(e);
 	}
+
+	public Employee getRecordById(int id) {
+		return dao.getRecordById(id);
+	}
 }

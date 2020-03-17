@@ -17,6 +17,27 @@ public class EmployeeController {
 	@Autowired
 	EmpService service;
 	
+	@RequestMapping("/")
+	public String home() {
+		return "home";
+	}
+	
+	@RequestMapping(value = "/selectForm", method = RequestMethod.GET)
+	public String selectForm() {
+		return "select";
+	}
+	
+	@RequestMapping(value = "/select", method = RequestMethod.GET)
+	public String select(@RequestParam("id") int id, Model model) {
+		Employee emp = service.getRecordById(id);
+		boolean isFound = false;
+		
+		if(emp != null) isFound = true;
+		model.addAttribute("emp", emp);
+		model.addAttribute("isFound", isFound);
+		return "view";
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute Employee e, Model model) {
 		boolean isAdded = service.add(e);
