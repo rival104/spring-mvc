@@ -18,4 +18,8 @@ public class EmpService {
 	public boolean update(Employee e) {
 		return dao.update(e);
 	}
+	
+	public boolean delete(Employee e) {
+		return dao.delete(e);
+	}
 }

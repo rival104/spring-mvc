@@ -30,11 +30,20 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@ModelAttribute Employee e, Model model) {
-		boolean isAdded = service.update(e);
-		if(isAdded) {
+		if(service.update(e)) {
 			model.addAttribute("msg" , "Update succesful!");
 		}else {
 			model.addAttribute("msg", "Error updating employee.");
+		}
+		return "display";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(@ModelAttribute Employee e, Model model) {
+		if(service.delete(e)) {
+			model.addAttribute("msg", "Deletion succesful!");
+		}else {
+			model.addAttribute("msg", "Error deleting object");
 		}
 		return "display";
 	}

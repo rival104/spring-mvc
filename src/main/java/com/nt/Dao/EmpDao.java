@@ -32,4 +32,15 @@ public class EmpDao {
 		}
 		return false;
 	}
+	
+	public boolean delete(Employee e) {
+		Object[] args = {e.getId()};
+		try {
+			int result = template.update("DELETE FROM emp WHERE eid = ?", args);
+			if(result == 1) return true;
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		return false;
+	}
 }
