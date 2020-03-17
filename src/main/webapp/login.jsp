@@ -1,15 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="login.css">
+<title>CRUD App</title>
 </head>
 <body>
-	<form action="login" method="post">
-		<input type="text" name="username"> <input type="text"
-			name="password"> <input type="submit" name="login">
-	</form>
+	
+	<div class="login">
+	    <h1>Login</h1>
+	    <form action="login" method="post">
+	        <input type="text" name="user" placeholder="Username" required="required" />
+	        <input type="password" name="pass" placeholder="Password" required="required" />
+	        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+	    </form>
+	</div>
+
 </body>
 </html>

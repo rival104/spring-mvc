@@ -85,4 +85,23 @@ public class EmpDao {
 		}
 		return null;
 	}
+
+	public Employee getRecordByName(String name) {
+		Object[] args = {name};
+		try {
+			Employee e = template.queryForObject("SELECT * FROM emp WHERE ename = ?", args, new RowMapper<Employee>() {
+
+				@Override
+				public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+					int id = rs.getInt(1);
+					String name = rs.getString(2);
+					int salary = rs.getInt(3);
+					return new Employee(id, name, salary);
+				}});
+			return e;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
 }

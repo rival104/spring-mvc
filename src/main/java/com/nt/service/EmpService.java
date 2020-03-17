@@ -33,4 +33,8 @@ public class EmpService {
 	public List<Employee> getAllRecord() {
 		return dao.getAllRecord();
 	}
+
+	public Employee getRecordByName(String name) {
+		return dao.getRecordByName(name);
+	}
 }

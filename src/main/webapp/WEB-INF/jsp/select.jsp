@@ -11,13 +11,13 @@
 			<!--Card content-->
 			<div class="card-body px-lg-5 pt-0">
 				<!-- Form -->
-				<form class="text-center" style="color: #757575;" action="select"
+				<form class="text-center" style="color: #757575;" action="${action}"
 					autocomplete="off">
 					<!-- ID -->
 					<div class="md-form">
-						<input type="number" class="form-control" id="employeeId" name="id"
-							placeholder="Enter ID here" required> <label for="employeeId">Employee
-							ID</label>
+						<input type="text" class="form-control" id="employeeId" name="${inputName}"
+							placeholder="Enter ${inputName} here" > <label for="employeeId">Employee
+							${inputName}</label>
 					</div>
 					<!-- button -->
 					<button

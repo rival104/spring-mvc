@@ -25,19 +25,41 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/selectForm", method = RequestMethod.GET)
-	public String selectForm() {
+	public String selectForm(Model model) {
+		model.addAttribute("action", "select");
+		model.addAttribute("inputName", "id");
 		return "select";
 	}
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	public String select(@RequestParam("id") int id, Model model) {
-		Employee emp = service.getRecordById(id);
 		boolean isFound = false;
+		Employee emp = service.getRecordById(id);
 		
 		if(emp != null) isFound = true;
 		model.addAttribute("emp", emp);
 		model.addAttribute("isFound", isFound);
 		return "view";
+	}
+	
+	@RequestMapping(value = "/selectByNameForm", method = RequestMethod.GET)
+	public String selectByNameForm(Model model) {
+		model.addAttribute("action", "selectByName");
+		model.addAttribute("inputName", "name");
+		return "select";
+		
+	}
+	
+	@RequestMapping(value = "/selectByName", method = RequestMethod.GET)
+	public String selectByName(@RequestParam("name") String name, Model model) {
+		boolean isFound = false;
+		
+		Employee emp = service.getRecordByName(name);
+		if(emp != null) isFound = true;
+		model.addAttribute("emp", emp);
+		model.addAttribute("isFound", isFound);
+		return "view";
+		
 	}
 	
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
@@ -52,35 +74,49 @@ public class EmployeeController {
 		return "viewAll";
 	}
 	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String registerForm() {
+		return "register";
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute Employee e, Model model) {
-		boolean isAdded = service.add(e);
-		if(isAdded) {
-			model.addAttribute("msg" , "Registration succesful!");
+		if(service.add(e)) {
+			model.addAttribute("isRegistered", true);
 		}else {
-			model.addAttribute("msg", "Error registering employee.");
+			model.addAttribute("hasError", true);
 		}
-		return "display";
+		return "register";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateForm() {
+		return "update";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@ModelAttribute Employee e, Model model) {
 		if(service.update(e)) {
-			model.addAttribute("msg" , "Update succesful!");
+			model.addAttribute("isUpdated", true);
 		}else {
-			model.addAttribute("msg", "Error updating employee.");
+			model.addAttribute("hasError", true);
 		}
-		return "display";
+		return "update";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteForm() {
+		return "delete";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@ModelAttribute Employee e, Model model) {
 		if(service.delete(e)) {
-			model.addAttribute("msg", "Deletion succesful!");
+			model.addAttribute("isDeleted", true);
 		}else {
-			model.addAttribute("msg", "Error deleting object");
+			model.addAttribute("hasError", true);
 		}
-		return "display";
+		return "delete";
 	}
 	
 

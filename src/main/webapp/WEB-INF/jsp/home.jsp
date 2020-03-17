@@ -40,7 +40,7 @@
 							<h5 class="card-title">Register an Employee</h5>
 							<p class="card-text">Uses SQL INSERT non-select query to
 								register a new employee.</p>
-							<a href="register.jsp" class="btn btn-success">Register</a>
+							<a href="register" class="btn btn-success">Register</a>
 						</div>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 							<h5 class="card-title">Update an Employee</h5>
 							<p class="card-text">Uses SQL UPDATE non-select query to
 								update employee salary.</p>
-							<a href="update.jsp" class="btn btn-warning">Update</a>
+							<a href="update" class="btn btn-warning">Update</a>
 						</div>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 							<h5 class="card-title">Delete an Employee</h5>
 							<p class="card-text">Uses SQL DELETE non-select query to
 								delete a new employee using ID.</p>
-							<a href="delete.jsp" class="btn btn-danger">Delete</a>
+							<a href="delete" class="btn btn-danger">Delete</a>
 						</div>
 					</div>
 				</div>
