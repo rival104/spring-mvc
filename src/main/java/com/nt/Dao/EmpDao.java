@@ -2,6 +2,7 @@ package com.nt.Dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,6 +53,24 @@ public class EmpDao {
 		Object[] args = {id};
 		try {
 			Employee e = template.queryForObject("SELECT * FROM emp WHERE eid = ?", args, new RowMapper<Employee>() {
+
+				@Override
+				public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+					int id = rs.getInt(1);
+					String name = rs.getString(2);
+					int salary = rs.getInt(3);
+					return new Employee(id, name, salary);
+				}});
+			return e;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
+
+	public List<Employee> getAllRecord() {
+		try {
+			List<Employee> e = template.query("SELECT * FROM emp", new RowMapper<Employee>() {
 
 				@Override
 				public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {

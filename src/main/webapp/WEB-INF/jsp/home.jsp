@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="jumbotron">
 			<h1 class="display-4">Employee CRUD Function</h1>
-			<p class="lead">This is a simple JAVA Servlet Web Application
+			<p class="lead">This is a Spring JAVA Web Application
 				that utilizes Create, Update, Delete, Select (Read) operation on my
 				sql database in a MVC architecture.</p>
 			<hr class="my-4">
@@ -17,7 +17,7 @@
 							<h5 class="card-title">View All Employees</h5>
 							<p class="card-text">Uses SQL queries using MySql Driver
 								manger to get all employees as a list Object</p>
-							<a href="viewAll" class="btn btn-dark">View All</a>
+							<a href="selectAll" class="btn btn-dark">View All</a>
 						</div>
 					</div>
 				</div>

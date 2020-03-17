@@ -1,5 +1,7 @@
 package com.nt.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.nt.entity.Employee;
 public class EmpService {
 	@Autowired
 	EmpDao dao;
+	
 	
 	public boolean add(Employee e) {
 		return dao.add(e);
@@ -25,5 +28,9 @@ public class EmpService {
 
 	public Employee getRecordById(int id) {
 		return dao.getRecordById(id);
+	}
+	
+	public List<Employee> getAllRecord() {
+		return dao.getAllRecord();
 	}
 }

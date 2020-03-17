@@ -35,10 +35,10 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="index.jsp">Home
+				<li class="nav-item active"><a class="nav-link" href="home">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="viewAll">View</a></li>
+				<li class="nav-item"><a class="nav-link" href="selectAll">View</a></li>
 				<li class="nav-item"><a class="nav-link" href="selectForm">Select</a></li>
 				<li class="nav-item"><a class="nav-link" href="register.jsp">Register</a></li>
 				<li class="nav-item"><a class="nav-link" href="update.jsp">Update</a></li>
@@ -54,7 +54,7 @@
 					<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">My account</a> 
 						<div class="dropdown-divider"></div>
-						<a id="formSubmit" class="dropdown-item formSubmit" href="logout" >Log out</a>
+						<a id="formSubmit" class="dropdown-item formSubmit" href="#" >Log out</a>
 					</div>
 				</li>
 				

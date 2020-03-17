@@ -1,5 +1,7 @@
 package com.nt.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,18 @@ public class EmployeeController {
 		model.addAttribute("emp", emp);
 		model.addAttribute("isFound", isFound);
 		return "view";
+	}
+	
+	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
+	public String selectAll(Model model) {
+		List<Employee> empList = service.getAllRecord();
+		
+		boolean isFound = false;
+		
+		if(empList != null) isFound = true;
+		model.addAttribute("empList", empList);
+		model.addAttribute("isFound", isFound);
+		return "viewAll";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
