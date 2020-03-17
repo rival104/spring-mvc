@@ -12,15 +12,24 @@ public class EmpDao {
 	JdbcTemplate template;
 	
 	public boolean add(Employee e) {
-		Object args[] = {e.getId(), e.getName(),e.getSal()};
+		Object[] args = {e.getId(), e.getName(),e.getSal()};
 		try {
 			int result = template.update("INSERT INTO emp values(?, ?, ?)", args);
 			if(result == 1) return true;
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-		
-		
+		return false;
+	}
+	
+	public boolean update(Employee e) {
+		Object[] args = {e.getSal(), e.getId()};
+		try {
+			int result = template.update("UPDATE emp SET esal = ? WHERE eid= ?", args);
+			if(result == 1) return true;
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 		return false;
 	}
 }

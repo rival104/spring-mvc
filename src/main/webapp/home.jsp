@@ -9,5 +9,7 @@
 <body>
 	<a href="login.jsp">Login</a>
 	<a href="register.jsp">Register</a>
+	<a href="update.jsp">Update</a>
+	<a href="delete.jsp">Delete</a>
 </body>
 </html>

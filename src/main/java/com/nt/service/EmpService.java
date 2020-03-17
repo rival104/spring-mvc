@@ -14,4 +14,8 @@ public class EmpService {
 	public boolean add(Employee e) {
 		return dao.add(e);
 	}
+	
+	public boolean update(Employee e) {
+		return dao.update(e);
+	}
 }

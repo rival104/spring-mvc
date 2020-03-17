@@ -28,6 +28,24 @@ public class EmployeeController {
 		return "display";
 	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute Employee e, Model model) {
+		boolean isAdded = service.update(e);
+		if(isAdded) {
+			model.addAttribute("msg" , "Update succesful!");
+		}else {
+			model.addAttribute("msg", "Error updating employee.");
+		}
+		return "display";
+	}
+	
+
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+		System.out.println(username +" : "+ password);
+		return "result";
+	}
+	
 //	@RequestMapping(value = "/register", method = RequestMethod.POST)
 //	public ModelAndView register(@ModelAttribute Employee e) {
 //		boolean isAdded = service.add(e);
@@ -42,10 +60,5 @@ public class EmployeeController {
 //		return mav;
 //	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-		System.out.println(username +" : "+ password);
-		return "result";
-	}
 }
 	
