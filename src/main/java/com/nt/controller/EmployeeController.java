@@ -55,19 +55,5 @@ public class EmployeeController {
 		return "result";
 	}
 	
-//	@RequestMapping(value = "/register", method = RequestMethod.POST)
-//	public ModelAndView register(@ModelAttribute Employee e) {
-//		boolean isAdded = service.add(e);
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("display");
-//		
-//		if(isAdded) {
-//			mav.addObject("msg" , "Registration success!");
-//		}else {
-//			mav.addObject("msg", "Error registering employee");
-//		}
-//		return mav;
-//	}
-	
 }
 	
