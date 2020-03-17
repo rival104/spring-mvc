@@ -17,7 +17,7 @@ public class EmployeeController {
 	@Autowired
 	EmpService service;
 	
-	@RequestMapping("/")
+	@RequestMapping(value = {"/", "/home"})
 	public String home() {
 		return "home";
 	}

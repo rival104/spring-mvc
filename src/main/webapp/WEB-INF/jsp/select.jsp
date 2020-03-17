@@ -15,8 +15,8 @@
 					autocomplete="off">
 					<!-- ID -->
 					<div class="md-form">
-						<input type="text" class="form-control" id="employeeId" name="id"
-							placeholder="Enter ID here"> <label for="employeeId">Employee
+						<input type="number" class="form-control" id="employeeId" name="id"
+							placeholder="Enter ID here" required> <label for="employeeId">Employee
 							ID</label>
 					</div>
 					<!-- button -->
@@ -25,7 +25,7 @@
 						type="submit">Search</button>
 					<a
 						class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0"
-						href="/" role="button">Go Back</a>
+						href="home" role="button">Go Back</a>
 				</form>
 				<!-- Form -->
 			</div>
