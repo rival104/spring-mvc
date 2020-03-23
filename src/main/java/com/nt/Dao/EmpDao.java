@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,6 +17,8 @@ import com.nt.entity.User;
 public class EmpDao {
 	@Autowired
 	JdbcTemplate template;
+	
+	private static final Logger logger = Logger.getLogger(EmpDao.class.getName());
 	
 	public User getUser(String user, String pass) {
 		Object[] args = {user, pass};
@@ -41,7 +44,10 @@ public class EmpDao {
 		Object[] args = {e.getId(), e.getName(),e.getSal()};
 		try {
 			int result = template.update("INSERT INTO emp values(?, ?, ?)", args);
-			if(result == 1) return true;
+			if(result == 1) {
+				logger.info("New employee registered(id, name, sal): " + e.getId() +" "+ e.getName() +" "+ e.getSal());
+				return true;
+			}
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
@@ -52,7 +58,10 @@ public class EmpDao {
 		Object[] args = {e.getSal(), e.getId()};
 		try {
 			int result = template.update("UPDATE emp SET esal = ? WHERE eid= ?", args);
-			if(result == 1) return true;
+			if(result == 1) {
+				logger.info(e.getId() + " updated with salary: " + e.getSal());
+				return true;
+			}
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
@@ -63,7 +72,10 @@ public class EmpDao {
 		Object[] args = {e.getId()};
 		try {
 			int result = template.update("DELETE FROM emp WHERE eid = ?", args);
-			if(result == 1) return true;
+			if(result == 1) {
+				logger.info(e.getId() + " deleted!");
+				return true; 
+			}
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
