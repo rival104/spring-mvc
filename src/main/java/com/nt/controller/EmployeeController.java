@@ -145,6 +145,20 @@ public class EmployeeController {
 		return "update";
 	}
 	
+	@RequestMapping(value = "/updateModal", method = RequestMethod.POST)
+	public String updateModal(@ModelAttribute Employee e, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
+		if(service.update(e)) {
+			model.addAttribute("isUpdated", true);
+		}else {
+			model.addAttribute("hasError", true);
+		}
+		return "redirect:selectAll";
+	}
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteForm(Model model) {
 		if(!LoginController.isLoggedIn()) {
@@ -166,6 +180,20 @@ public class EmployeeController {
 			model.addAttribute("hasError", true);
 		}
 		return "delete";
+	}
+	
+	@RequestMapping(value = "/deleteModal", method = RequestMethod.POST)
+	public String deleteModal(@ModelAttribute Employee e, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
+		if(service.delete(e)) {
+			model.addAttribute("isDeleted", true);
+		}else {
+			model.addAttribute("hasError", true);
+		}
+		return "redirect:selectAll";
 	}
 	
 }
