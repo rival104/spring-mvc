@@ -10,11 +10,32 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import com.nt.entity.Employee;
+import com.nt.entity.User;
 
 @Component
 public class EmpDao {
 	@Autowired
 	JdbcTemplate template;
+	
+	public User getUser(String user, String pass) {
+		Object[] args = {user, pass};
+		try {
+			User user1 = template.queryForObject("SELECT * FROM users WHERE username= ? and password = ?", args, new RowMapper<User>() {
+
+				@Override
+				public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+					int userId = rs.getInt(1);
+					String username = rs.getString(2);
+					String password = rs.getString(3);
+					return new User(userId, username, password);
+				}} );
+			return user1;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return null;
+	}
 	
 	public boolean add(Employee e) {
 		Object[] args = {e.getId(), e.getName(),e.getSal()};

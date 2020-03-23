@@ -11,6 +11,7 @@
 	
 	<div class="login">
 	    <h1>Login</h1>
+	     <h3>${msg}</h3>
 	    <form action="login" method="post">
 	        <input type="text" name="username" placeholder="Username"  required/>
 	        <input type="password" name="password" placeholder="Password"  required/>

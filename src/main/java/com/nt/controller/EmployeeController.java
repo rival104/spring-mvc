@@ -19,13 +19,22 @@ public class EmployeeController {
 	@Autowired
 	EmpService service;
 	
-	@RequestMapping(value = {"/", "/home"})
-	public String home() {
+	
+	@RequestMapping(value = {"/home"})
+	public String home(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		return "home";
 	}
 	
 	@RequestMapping(value = "/selectForm", method = RequestMethod.GET)
 	public String selectForm(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		model.addAttribute("action", "select");
 		model.addAttribute("inputName", "id");
 		return "select";
@@ -33,6 +42,10 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	public String selectById(@RequestParam("id") int id, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		boolean isFound = false;
 		Employee emp = service.getRecordById(id);
 		
@@ -44,6 +57,10 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/selectByNameForm", method = RequestMethod.GET)
 	public String selectByNameForm(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		model.addAttribute("action", "selectByName");
 		model.addAttribute("inputName", "name");
 		return "select";
@@ -52,6 +69,10 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/selectByName", method = RequestMethod.GET)
 	public String selectByName(@RequestParam("name") String name, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		boolean isFound = false;
 		
 		Employee emp = service.getRecordByName(name);
@@ -64,6 +85,10 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
 	public String selectAll(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		List<Employee> empList = service.getAllRecord();
 		
 		boolean isFound = false;
@@ -75,12 +100,20 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String registerForm() {
+	public String registerForm(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		return "register";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute Employee e, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		if(service.add(e)) {
 			model.addAttribute("isRegistered", true);
 		}else {
@@ -90,12 +123,20 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateForm() {
+	public String updateForm(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		return "update";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@ModelAttribute Employee e, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		if(service.update(e)) {
 			model.addAttribute("isUpdated", true);
 		}else {
@@ -105,25 +146,26 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteForm() {
+	public String deleteForm(Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		return "delete";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@ModelAttribute Employee e, Model model) {
+		if(!LoginController.isLoggedIn()) {
+			model.addAttribute("msg", "You need to login first!");
+			return "login";
+		}
 		if(service.delete(e)) {
 			model.addAttribute("isDeleted", true);
 		}else {
 			model.addAttribute("hasError", true);
 		}
 		return "delete";
-	}
-	
-
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-		System.out.println(username +" : "+ password);
-		return "result";
 	}
 	
 }

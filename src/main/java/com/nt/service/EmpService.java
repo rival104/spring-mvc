@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.nt.Dao.EmpDao;
 import com.nt.entity.Employee;
+import com.nt.entity.User;
 
 @Service
 public class EmpService {
 	@Autowired
 	EmpDao dao;
+	
 	
 	
 	public boolean add(Employee e) {
@@ -36,5 +38,9 @@ public class EmpService {
 
 	public Employee getRecordByName(String name) {
 		return dao.getRecordByName(name);
+	}
+
+	public User getUser(String username, String password) {
+		return dao.getUser(username, password);
 	}
 }

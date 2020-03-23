@@ -57,14 +57,14 @@
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <i class="fas fa-user"></i><span
-						class="text-uppercase"> ${user}</span> Profile
+						class="text-uppercase"> ${username}</span> Profile
 				</a>
 
 					<div class="dropdown-menu dropdown-menu-right dropdown-info"
 						aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">My account</a>
 						<div class="dropdown-divider"></div>
-						<a id="formSubmit" class="dropdown-item formSubmit" href="#">Log
+						<a id="formSubmit" class="dropdown-item formSubmit" href="logout">Log
 							out</a>
 					</div></li>
 
