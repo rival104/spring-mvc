@@ -17,9 +17,7 @@
 
 <script src="https://kit.fontawesome.com/abc39c0b8a.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="style.css">
-
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
 <title>Spring CRUD App</title>
 </head>
@@ -41,16 +39,14 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="selectAll">View</a></li>
-				<li class="nav-item"><a class="nav-link" href="selectForm">Select</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> Select </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="selectForm">By Id</a> 
-						<a class="dropdown-item" href="selectByNameForm">By Name</a>
-					</div>
-				</li>
+						<a class="dropdown-item" href="selectForm">By Id</a> <a
+							class="dropdown-item" href="selectByNameForm">By Name</a>
+					</div></li>
 				<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
 				<li class="nav-item"><a class="nav-link" href="update">Update</a></li>
 				<li class="nav-item"><a class="nav-link" href="delete">Delete</a></li>

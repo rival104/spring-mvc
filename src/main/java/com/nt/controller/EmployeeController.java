@@ -32,7 +32,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
-	public String select(@RequestParam("id") int id, Model model) {
+	public String selectById(@RequestParam("id") int id, Model model) {
 		boolean isFound = false;
 		Employee emp = service.getRecordById(id);
 		
