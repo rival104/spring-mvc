@@ -27,9 +27,8 @@ public class LoginController {
 		// logs
 		logger.info("Server started!");
 
-		String username = (String) session.getAttribute("username");
-		System.out.println(username);
-		if (username != null)
+		String role = (String) session.getAttribute("role");
+		if (role != null)
 			loggedIn = true;
 
 		if (!LoginController.isLoggedIn()) {
@@ -37,7 +36,11 @@ public class LoginController {
 			return "login";
 		}
 
-		return "home";
+		if(role.equals("hr")) {
+			return "home";
+		}else {
+			return "empHome";
+		}	
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -50,8 +53,13 @@ public class LoginController {
 			logger.info(user.getUsername() + " signed In.");
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("role", user.getRole());
 			loggedIn = true;
-			return "home";
+			if(user.getRole().equals("hr")) {
+				return "home";
+			}else if(user.getRole().equals("emp")){
+				return "empHome";
+			}	
 		}
 
 		model.addAttribute("msg", "Invalid username and/or password");
@@ -66,7 +74,12 @@ public class LoginController {
 		loggedIn = false;
 		return "login";
 	}
-
+	
+	@RequestMapping(value = "/accessError")
+	public String accessErrorPage() {
+		return "accessError";
+	}
+	
 	public static boolean isLoggedIn() {
 		return loggedIn;
 	}

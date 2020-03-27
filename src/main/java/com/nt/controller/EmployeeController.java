@@ -196,5 +196,10 @@ public class EmployeeController {
 		return "redirect:selectAll";
 	}
 	
+	@RequestMapping("/empHome")
+	public String empHomePage() {
+		return "empHome";
+	}
+	
 }
 	

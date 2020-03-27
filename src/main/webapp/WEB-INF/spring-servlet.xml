@@ -10,8 +10,8 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <mvc:annotation-driven />
+
+	<mvc:annotation-driven />
 	<context:component-scan base-package="com.nt" />
 
 	<context:property-placeholder
@@ -37,5 +37,12 @@
 
 	<mvc:resources mapping="/resources/**"
 		location="/WEB-INF/resources/static/" cache-period="31556926" />
+		
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="com.nt.controller.CustomInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

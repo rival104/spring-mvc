@@ -30,7 +30,8 @@ public class EmpDao {
 					int userId = rs.getInt(1);
 					String username = rs.getString(2);
 					String password = rs.getString(3);
-					return new User(userId, username, password);
+					String role = rs.getString(4);
+					return new User(userId, username, password, role);
 				}} );
 			return user1;
 		} catch (Exception e) {
