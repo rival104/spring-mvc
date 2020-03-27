@@ -63,7 +63,7 @@
 							<!-- Salary -->
 							<div class="md-form">
 								<input type="number" class="form-control" id="employeeSal"
-									name="sal" placeholder="Enter Salary here" required> <label
+									name="sal" placeholder="Enter new Salary here" required> <label
 									for="employeeSal">Salary</label>
 							</div>
 							<!-- button -->

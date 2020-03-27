@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nt.Dao.EmpDao;
-import com.nt.entity.Employee;
-import com.nt.entity.User;
+import com.nt.entity.*;
 
 @Service
 public class EmpService {
@@ -42,5 +41,13 @@ public class EmpService {
 
 	public User getUser(String username, String password) {
 		return dao.getUser(username, password);
+	}
+
+	public List<String> getEmployeeNames() {
+		return dao.getEmployeeNames();
+	}
+
+	public UserDetails getUserDetailsById(int id) {
+		return dao.getUserDetailsById(id);
 	}
 }

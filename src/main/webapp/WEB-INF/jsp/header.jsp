@@ -38,18 +38,27 @@
 				<li class="nav-item active"><a class="nav-link" href="home">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="selectAll">View</a></li>
+				<li class="nav-item"><a class="nav-link" href="selectAll">View All</a></li>
+				<li class="nav-item"><a class="nav-link" href="profileByName">View Selected</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Select </a>
+					aria-expanded="false"> Find </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="selectForm">By Id</a> <a
 							class="dropdown-item" href="selectByNameForm">By Name</a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
-				<li class="nav-item"><a class="nav-link" href="update">Update</a></li>
-				<li class="nav-item"><a class="nav-link" href="delete">Delete</a></li>
+					
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Edit </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="register">Register</a>
+						<a class="dropdown-item" href="update">Update</a>
+						<a class="dropdown-item" href="delete">Delete</a>
+					</div>
+				</li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto my-2 my-lg-0">

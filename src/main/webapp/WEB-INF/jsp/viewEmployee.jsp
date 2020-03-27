@@ -65,39 +65,29 @@
 	<!--/.Navbar -->
 	<div class="mt-30"></div>
 	<div class="container">
-		<div class="row">
-			<div class="jumbotron">
-				<h1 class="display-4">Welcome ${username}!</h1>
-				<p class="lead">This is a Spring JAVA Web Application that
-					utilizes interceptor to provide role specific tasks.</p>
-				<hr class="my-4">
-				<p>It perform the following functions the performs the operation
-					in a database.</p>
+		<div class="row justify-content-center">
+			<h2>Display Employee Info</h2>
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Full Name</th>
+						<th scope="col">Address</th>
+						<th scope="col">Position</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${userdetails.getUserId()}</td>
+						<td>${userdetails.getFullName()}</td>
+						<td>${userdetails.getAddress()}</td>
+						<td>${userdetails.getPosition()}</td>
+					</tr>
 
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="card text-white bg-info mb-3">
-							<div class="card-body">
-								<h5 class="card-title">View Your Info</h5>
-								<p class="card-text">Uses SQL queries using MySql Driver
-									manger to get the employee details</p>
-								<a href="viewEmployee" class="btn btn-dark">View</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="card text-white bg-success mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Update Your Info</h5>
-								<p class="card-text">Uses SQL queries update the particular
-									employee using ID. It uses relational db to acheive it.</p>
-								<a href="#" class="btn btn-dark">Update</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
+				</tbody>
+			</table>
+			<a class="btn btn-secondary" href="empHome" role="button">Go
+				Back</a>
 		</div>
 	</div>
 

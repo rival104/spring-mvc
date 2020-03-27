@@ -10,8 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.nt.entity.Employee;
-import com.nt.entity.User;
+import com.nt.entity.*;
 
 @Component
 public class EmpDao {
@@ -34,6 +33,27 @@ public class EmpDao {
 					return new User(userId, username, password, role);
 				}} );
 			return user1;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return null;
+	}
+	
+	public UserDetails getUserDetailsById(int id) {
+		Object[] args = {id};
+		try {
+			UserDetails userdt = template.queryForObject("SELECT * FROM employee.userdetails WHERE user_Id = ?", args, new RowMapper<UserDetails>() {
+
+				@Override
+				public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+					int userId = rs.getInt(1);
+					String fullName = rs.getString(2);
+					String address = rs.getString(3);
+					String position = rs.getString(4);
+					return new UserDetails(userId, fullName, address, position);
+				}} );
+			return userdt;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -133,6 +153,22 @@ public class EmpDao {
 					return new Employee(id, name, salary);
 				}});
 			return e;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
+
+	public List<String> getEmployeeNames() {
+		try {
+			List<String> names = template.query("SELECT ename FROM emp", new RowMapper<String>() {
+
+				@Override
+				public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+					String name = rs.getString(1);
+					return name;
+				}});
+			return names;
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

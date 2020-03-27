@@ -40,6 +40,7 @@ public class CustomInterceptor  extends HandlerInterceptorAdapter {
 		List<String> links = new ArrayList<>();
 		
 		links.add("/empHome");
+		links.add("/viewEmployee");
 		links.add("/accessError");
 		links.add("/logout");
 		

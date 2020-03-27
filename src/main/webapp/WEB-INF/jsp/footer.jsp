@@ -32,6 +32,15 @@
 		modal.find('.modal-title').text('Delete: ' + recipient)
 		modal.find('#eIdFordel').val(recipient)
 	})
+	
+	function getSelectedOption() {
+		var select = document.getElementById('selectEmp');
+		console.log(select);
+		var selectedName = select.options[select.selectedIndex].value;
+		document.getElementById('empNameForProfile').value=selectedName;
+		document.getElementById('viewProfile').submit();
+	}
+	
 </script>
 </body>
 </html>

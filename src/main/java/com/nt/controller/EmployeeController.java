@@ -2,6 +2,8 @@ package com.nt.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.servlet.ModelAndView;
 
 import com.nt.entity.Employee;
+import com.nt.entity.UserDetails;
 import com.nt.service.EmpService;
 
 @Controller
@@ -196,9 +199,42 @@ public class EmployeeController {
 		return "redirect:selectAll";
 	}
 	
+	@RequestMapping("/profileByName")
+	public String profilesPage(Model model) {
+		List<String> names = service.getEmployeeNames();
+		model.addAttribute("names",names);
+		return "profiles";
+	}
+	
+	@RequestMapping("/getProfileByName")
+	public String getProfilesPage(@RequestParam("ename") String ename,Model model) {
+		List<String> names = service.getEmployeeNames();
+		model.addAttribute("names",names);
+		Employee emp = service.getRecordByName(ename);
+		model.addAttribute("emp", emp);
+		return "profiles";
+	}
+	
 	@RequestMapping("/empHome")
 	public String empHomePage() {
 		return "empHome";
+	}
+	
+	@RequestMapping(value = "/viewEmployee", method = RequestMethod.GET)
+	public String selectById(Model model, HttpSession session) {
+		
+		Object id = session.getAttribute("userId");
+		if(id == null) {
+			return "login";
+		}
+		
+		try {
+			UserDetails ud = service.getUserDetailsById((int) id);
+			model.addAttribute("userdetails", ud);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "viewEmployee";
 	}
 	
 }
