@@ -50,4 +50,8 @@ public class EmpService {
 	public UserDetails getUserDetailsById(int id) {
 		return dao.getUserDetailsById(id);
 	}
+
+	public List<Employee> getAllRecordByUser(int userId) {
+		return dao.getAllRecordByUser(userId);
+	}
 }

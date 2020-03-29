@@ -22,22 +22,13 @@ public class EmployeeController {
 	@Autowired
 	EmpService service;
 	
-	
 	@RequestMapping(value = {"/home"})
-	public String home(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
+	public String home() {
 		return "home";
 	}
 	
 	@RequestMapping(value = "/selectForm", method = RequestMethod.GET)
 	public String selectForm(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		model.addAttribute("action", "select");
 		model.addAttribute("inputName", "id");
 		return "select";
@@ -45,10 +36,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	public String selectById(@RequestParam("id") int id, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		boolean isFound = false;
 		Employee emp = service.getRecordById(id);
 		
@@ -60,10 +47,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/selectByNameForm", method = RequestMethod.GET)
 	public String selectByNameForm(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		model.addAttribute("action", "selectByName");
 		model.addAttribute("inputName", "name");
 		return "select";
@@ -72,10 +55,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/selectByName", method = RequestMethod.GET)
 	public String selectByName(@RequestParam("name") String name, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		boolean isFound = false;
 		
 		Employee emp = service.getRecordByName(name);
@@ -87,36 +66,37 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
-	public String selectAll(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
+	public String selectAll(HttpSession session,Model model) {
+		int userId = 0;
+		try {
+			userId = (int) session.getAttribute("userId");
+		} catch(Exception e) {
+			model.addAttribute("hasError", true);
+			model.addAttribute("errorMsg", "session error!");
+			return "viewAll";
 		}
-		List<Employee> empList = service.getAllRecord();
+	
+		List<Employee> empList = service.getAllRecordByUser(userId);
 		
-		boolean isFound = false;
-		
-		if(empList != null) isFound = true;
+		boolean hasError = false;
+		if(empList == null) hasError = true;
 		model.addAttribute("empList", empList);
-		model.addAttribute("isFound", isFound);
+		model.addAttribute("hasError", hasError);
+		model.addAttribute("errorMsg", "Error getting list");
 		return "viewAll";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerForm(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
+		List<String> names = service.getEmployeeNames();
+		model.addAttribute("names",names);
 		return "register";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(@ModelAttribute Employee e, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
+	public String register(@ModelAttribute Employee e, Model model, HttpSession session) {
+		int userId = (int) session.getAttribute("userId");
+		e.setCreatorId(userId);
 		if(service.add(e)) {
 			model.addAttribute("isRegistered", true);
 		}else {
@@ -126,20 +106,12 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateForm(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
+	public String updateForm() {
 		return "update";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@ModelAttribute Employee e, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		if(service.update(e)) {
 			model.addAttribute("isUpdated", true);
 		}else {
@@ -150,10 +122,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/updateModal", method = RequestMethod.POST)
 	public String updateModal(@ModelAttribute Employee e, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		if(service.update(e)) {
 			model.addAttribute("isUpdated", true);
 		}else {
@@ -163,20 +131,12 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteForm(Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
+	public String deleteForm() {
 		return "delete";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@ModelAttribute Employee e, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		if(service.delete(e)) {
 			model.addAttribute("isDeleted", true);
 		}else {
@@ -187,10 +147,6 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/deleteModal", method = RequestMethod.POST)
 	public String deleteModal(@ModelAttribute Employee e, Model model) {
-		if(!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "You need to login first!");
-			return "login";
-		}
 		if(service.delete(e)) {
 			model.addAttribute("isDeleted", true);
 		}else {
@@ -209,8 +165,10 @@ public class EmployeeController {
 	@RequestMapping("/getProfileByName")
 	public String getProfilesPage(@RequestParam("ename") String ename,Model model) {
 		List<String> names = service.getEmployeeNames();
-		model.addAttribute("names",names);
 		Employee emp = service.getRecordByName(ename);
+		
+		model.addAttribute("names",names);
+		model.addAttribute("empProps", emp.getProperties());
 		model.addAttribute("emp", emp);
 		return "profiles";
 	}

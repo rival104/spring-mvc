@@ -30,48 +30,131 @@
 	</c:if>
 
 
+	<div class="register">
+		<div class="row">
 
-	<div class="row justify-content-center">
-		<!--Custom Material form -->
-		<div class="card min-w">
-			<h5 class="card text-white bg-info mb-3 card-header text-center py-4">
-				<strong>Register New Employee</strong>
-			</h5>
-			<!--Card content-->
-			<div class="card-body px-lg-5 pt-0">
-				<!-- Form -->
-				<form class="text-center" style="color: #757575;" action="register"
-					autocomplete="off" method="post">
-					<!-- ID -->
-					<div class="md-form">
-						<input type="number" class="form-control" id="employeeId" name="id"
-							placeholder="Enter ID here" required> <label for="employeeId">Employee
-							ID</label>
-					</div>
-					<!-- Name -->
-					<div class="md-form">
-						<input type="text" class="form-control" id="employeeName"
-							name="name" placeholder="Enter Name here"> <label
-							for="employeeName">Name</label>
-					</div>
-					<!-- Salary -->
-					<div class="md-form">
-						<input type="number" class="form-control" id="employeeSal"
-							name="sal" placeholder="Enter Salary here"> <label
-							for="employeeSal">Salary</label>
-					</div>
-					<!-- button -->
-					<button
-						class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
-						type="submit">Register</button>
-					<a
-						class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0"
-						href="home" role="button">Go Back</a>
-				</form>
-				<!-- Form -->
+			<div class="col-md-3 register-left">
+				<img src="https://i.ibb.co/84sRCCv/kissclipart-follower-icon-instagram-icon-profile-icon-6c80833fc4205af7-1.png" alt="" />
+				<h3>Welcome</h3>
+				<p>Register an new Employee or assign user in just a few steps!</p>
 			</div>
+
+			<div class="col-md-9 register-right">
+				<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-selected="true">Employee</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="false">User</a></li>
+				</ul>
+
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel"
+						aria-labelledby="home-tab">
+						<h3 class="register-heading">Register an Employee</h3>
+						<form action="register" autocomplete="off" method="post">
+							<div class="row register-form">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" class="form-control" name="name"
+											placeholder="Full Name *" value="" required />
+									</div>
+									<div class="form-group">
+										<input type="number" class="form-control" name="sal"
+											placeholder="Salary *" value="" required />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="empType"
+											placeholder="Type eg.Fulltime *" value="" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="designation"
+											placeholder="designation *" value="" />
+									</div>
+									<div class="form-group"></div>
+									<div class="form-group">
+										<div class="maxl">
+											<label class="radio inline"> <input type="radio"
+												name="gender" value="male" checked> <span>
+													Male </span>
+											</label> <label class="radio inline"> <input type="radio"
+												name="gender" value="female"> <span>Female </span>
+											</label> <label class="radio inline"> <input type="radio"
+												name="gender" value="other"> <span>Other </span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="email" class="form-control" name="email"
+											placeholder="Employee Email *" value="" />
+									</div>
+									<div class="form-group">
+										<input type="text" minlength="10" maxlength="10" name="phone"
+											class="form-control" placeholder="Your Phone *" value="" />
+									</div>
+									<div class="form-group">
+										<select class="form-control text-capitalize" name="role">
+											<option class="hidden" selected disabled>Please
+												Select User Role</option>
+											<option>employee</option>
+											<option>hr</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="techStack"
+											placeholder="Enter Technology Stack *" value="" />
+									</div>
+									<div class="form-group">
+										<input type="date" class="form-control" name="dob"
+											placeholder="Enter Date of Birthk *" value="" />
+									</div>
+									<input type="submit" class="btnRegister" value="Register" />
+								</div>
+
+							</div>
+						</form>
+					</div>
+
+					<div class="tab-pane fade show" id="profile" role="tabpanel"
+						aria-labelledby="profile-tab">
+						<h3 class="register-heading">Register a User</h3>
+						<div class="row register-form">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control" name="username"
+										placeholder="User Name *" value="" />
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control"
+										placeholder="Password *" value="" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<select class="form-control" name="userByName">
+										<option class="hidden" selected disabled>Please
+											select employee details</option>
+										<c:forEach items="${names}" var="name">
+											<option value="${name}">${name}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password"
+										placeholder="Confirm Password *" value="" />
+								</div>
+								<input type="submit" class="btnRegister" value="Register" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
 		</div>
-		<!--Custom Material form -->
 	</div>
 
 </div>

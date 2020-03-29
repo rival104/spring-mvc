@@ -18,8 +18,6 @@ public class LoginController {
 	@Autowired
 	EmpService service;
 
-	private static boolean loggedIn = false;
-
 	private static final Logger logger = Logger.getLogger(LoginController.class.getName());
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
@@ -28,11 +26,7 @@ public class LoginController {
 		logger.info("Server started!");
 
 		String role = (String) session.getAttribute("role");
-		if (role != null)
-			loggedIn = true;
-
-		if (!LoginController.isLoggedIn()) {
-			model.addAttribute("msg", "Please login!");
+		if (role == null) {
 			return "login";
 		}
 
@@ -54,7 +48,6 @@ public class LoginController {
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("userId", user.getUserId());
 			session.setAttribute("role", user.getRole());
-			loggedIn = true;
 			if(user.getRole().equals("hr")) {
 				return "home";
 			}else if(user.getRole().equals("emp")){
@@ -71,7 +64,6 @@ public class LoginController {
 		logger.info(session.getAttribute("username") + " signed out.");
 		session.invalidate();
 		model.addAttribute("msg", "you have succesfully logged out.");
-		loggedIn = false;
 		return "login";
 	}
 	
@@ -80,7 +72,4 @@ public class LoginController {
 		return "accessError";
 	}
 	
-	public static boolean isLoggedIn() {
-		return loggedIn;
-	}
 }

@@ -33,6 +33,7 @@ public class CustomInterceptor  extends HandlerInterceptorAdapter {
 			}
 				
 		}
+		response.sendRedirect("login");
 		return false;
 	}
 	
