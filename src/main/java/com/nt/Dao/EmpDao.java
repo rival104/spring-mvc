@@ -187,10 +187,10 @@ public class EmpDao {
 		return null;
 	}
 
-	public Employee getRecordByName(String name) {
-		Object[] args = { name };
+	public Employee getRecordsByName(String name, int id) {
+		Object[] args = { name, id };
 		try {
-			Employee e = template.queryForObject("SELECT * FROM emp WHERE ename = ?", args, new RowMapper<Employee>() {
+			Employee e = template.queryForObject("SELECT * FROM emp WHERE ename = ? and created_by = ?", args, new RowMapper<Employee>() {
 
 				@Override
 				public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -215,9 +215,10 @@ public class EmpDao {
 		return null;
 	}
 
-	public List<String> getEmployeeNames() {
+	public List<String> getEmployeeNames(int userId) {
+		Object[] args = {userId};
 		try {
-			List<String> names = template.query("SELECT ename FROM emp", new RowMapper<String>() {
+			List<String> names = template.query("SELECT ename FROM emp WHERE created_by = ?",args , new RowMapper<String>() {
 
 				@Override
 				public String mapRow(ResultSet rs, int rowNum) throws SQLException {

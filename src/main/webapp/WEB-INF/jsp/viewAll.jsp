@@ -14,7 +14,7 @@
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
 				<thead>
-					<tr class="bg-success">
+					<tr class="bg-blue">
 						<th scope="col">#</th>
 						<th scope="col">Name</th>
 						<th scope="col">Salary</th>
@@ -30,7 +30,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${empList}" var="emp" varStatus="loop">
-						<tr>
+						<tr class="bg-second">
 							<th scope="row">${loop.index + 1}</th>
 							<td><span class="text-capitalize">${emp.name}</span></td>
 							<td>${emp.sal}</td>

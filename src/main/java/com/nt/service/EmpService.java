@@ -35,16 +35,16 @@ public class EmpService {
 		return dao.getAllRecord();
 	}
 
-	public Employee getRecordByName(String name) {
-		return dao.getRecordByName(name);
+	public Employee getRecordsByName(String name, int userId) {
+		return dao.getRecordsByName(name, userId);
 	}
 
 	public User getUser(String username, String password) {
 		return dao.getUser(username, password);
 	}
 
-	public List<String> getEmployeeNames() {
-		return dao.getEmployeeNames();
+	public List<String> getEmployeeNames(int userId) {
+		return dao.getEmployeeNames(userId);
 	}
 
 	public UserDetails getUserDetailsById(int id) {

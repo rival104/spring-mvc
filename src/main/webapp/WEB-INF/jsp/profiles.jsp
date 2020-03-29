@@ -15,12 +15,35 @@
 			</select>
 		</div>
 	</div>
+
 	<div class="portfoliocard">
 		<div class="coverphoto"></div>
 		<div class="row">
 
-			<div class="profile_picture"></div>
-			<div class="left_col">
+			<c:if test="${emp != null}">
+				<c:set var="gender" scope="session" value="" />
+
+				<c:choose>
+					<c:when test="${emp.gender == 'male'}">
+						<c:set var="gender" scope="session" value="men" />
+					</c:when>
+
+					<c:when test="${emp.gender == 'female'}">
+						<c:set var="gender" scope="session" value="women" />
+					</c:when>
+				</c:choose>
+
+				<c:set var="profileLink" scope="session"
+					value="https://randomuser.me/api/portraits/${gender}/${emp.id % 100}.jpg" />
+			</c:if>
+
+			<c:if test="${emp == null}">
+				<c:set var="profileLink" scope="session"
+					value="http://cache.spreadshirt.net/Public/Common/images/profile-pic-placeholder_130x130.png" />
+			</c:if>
+
+			<img class="profile_picture" alt="" src="${profileLink}">
+			<div class="col-md-3 left_col">
 				<div class="followers">
 					<div class="follow_count">${emp.sal}</div>
 					Salary
@@ -30,20 +53,24 @@
 					Contact
 				</div>
 			</div>
-			<div class="right_col">
+			<div class="col-md-9 right_col">
 				<div class="row">
-					<div class="col-md-10">
-						<h2 class="name"><span class="text-capitalize">${emp.name}</span></h2>
-						<h3 class="location"><span class="text-capitalize">${emp.designation}</span></h3>
+					<div class="col-sm-10">
+						<h2 class="name">
+							<span class="text-capitalize">${emp.name}</span>
+						</h2>
+						<h3 class="location">
+							<span class="text-capitalize">${emp.designation}</span>
+						</h3>
 					</div>
-					<div class="col-md-2">
+					<div class="col-sm-2">
 						<input type="submit" class="profile-edit-btn" name="btnAddMore"
 							value="Edit Profile" />
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-12">
 						<div class="profile-head">
 							<ul class="nav nav-tabs justify-content-end" id="myTab"
 								role="tablist">
@@ -57,9 +84,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-10">
+				<div class="row mt-30 justify-content-center">
+					<div class="col-2"></div>
+					<div class="col-10">
 						<div class="tab-content profile-tab" id="myTabContent">
 							<div class="tab-pane fade show active" id="home" role="tabpanel"
 								aria-labelledby="home-tab">
@@ -82,40 +109,42 @@
 									<div class="col-md-4">
 										<p>${emp.email}</p>
 									</div>
-									
+
 									<div class="col-md-2">
 										<label>Type:</label>
 									</div>
 									<div class="col-md-4">
 										<p>${emp.empType}</p>
 									</div>
-									
+
 									<div class="col-md-2">
 										<label>DOB:</label>
 									</div>
 									<div class="col-md-4">
 										<p>${emp.dob}</p>
 									</div>
-									
+
 									<div class="col-md-2">
 										<label>Gender:</label>
 									</div>
 									<div class="col-md-4">
 										<p>${emp.gender}</p>
 									</div>
-									
+
 									<div class="col-md-2">
 										<label>Role:</label>
 									</div>
 									<div class="col-md-4">
 										<p>${emp.role}</p>
 									</div>
-								
+
 									<div class="col-md-2">
-										<label>Tech Stack</label>
+										<label>Tech Stack:</label>
 									</div>
 									<div class="col-md-4">
-										<p>${emp.techStack}</p>
+										<p>
+											<span class="badge badge-success">${emp.techStack}</span>
+										</p>
 									</div>
 								</div>
 							</div>
@@ -171,8 +200,6 @@
 						</div>
 					</div>
 				</div>
-
-
 
 			</div>
 		</div>

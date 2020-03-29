@@ -54,10 +54,10 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/selectByName", method = RequestMethod.GET)
-	public String selectByName(@RequestParam("name") String name, Model model) {
+	public String selectByName(@RequestParam("name") String name, Model model, HttpSession session) {
 		boolean isFound = false;
-		
-		Employee emp = service.getRecordByName(name);
+		int userId = (int) session.getAttribute("userId");
+		Employee emp = service.getRecordsByName(name, userId);
 		if(emp != null) isFound = true;
 		model.addAttribute("emp", emp);
 		model.addAttribute("isFound", isFound);
@@ -87,8 +87,9 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String registerForm(Model model) {
-		List<String> names = service.getEmployeeNames();
+	public String registerForm(Model model, HttpSession session) {
+		int userId = (int) session.getAttribute("userId");
+		List<String> names = service.getEmployeeNames(userId);
 		model.addAttribute("names",names);
 		return "register";
 	}
@@ -156,16 +157,18 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping("/profileByName")
-	public String profilesPage(Model model) {
-		List<String> names = service.getEmployeeNames();
+	public String profilesPage(Model model, HttpSession session) {
+		int userId = (int) session.getAttribute("userId");
+		List<String> names = service.getEmployeeNames(userId);
 		model.addAttribute("names",names);
 		return "profiles";
 	}
 	
 	@RequestMapping("/getProfileByName")
-	public String getProfilesPage(@RequestParam("ename") String ename,Model model) {
-		List<String> names = service.getEmployeeNames();
-		Employee emp = service.getRecordByName(ename);
+	public String getProfilesPage(@RequestParam("ename") String ename,Model model, HttpSession session) {
+		int userId = (int) session.getAttribute("userId");
+		List<String> names = service.getEmployeeNames(userId);
+		Employee emp = service.getRecordsByName(ename, userId);
 		
 		model.addAttribute("names",names);
 		model.addAttribute("empProps", emp.getProperties());
