@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.servlet.ModelAndView;
 
 import com.nt.entity.Employee;
-import com.nt.entity.UserDetails;
+import com.nt.entity.User;
 import com.nt.service.EmpService;
 
 @Controller
@@ -184,14 +184,15 @@ public class EmployeeController {
 	@RequestMapping(value = "/viewEmployee", method = RequestMethod.GET)
 	public String selectById(Model model, HttpSession session) {
 		
-		Object id = session.getAttribute("userId");
-		if(id == null) {
+		User currentUser = (User) session.getAttribute("user");
+		if(currentUser == null) {
 			return "login";
 		}
 		
 		try {
-			UserDetails ud = service.getUserDetailsById((int) id);
-			model.addAttribute("userdetails", ud);
+			int empId = Integer.parseInt(currentUser.getUserDetail());
+			Employee emp = service.getRecordById(empId);
+			model.addAttribute("emp", emp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

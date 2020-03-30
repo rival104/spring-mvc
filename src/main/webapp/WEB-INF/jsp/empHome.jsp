@@ -48,7 +48,7 @@
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <i class="fas fa-user"></i><span
-						class="text-uppercase"> ${username}</span> Profile
+						class="text-uppercase"> ${user.username}</span> Profile
 				</a>
 
 					<div class="dropdown-menu dropdown-menu-right dropdown-info"

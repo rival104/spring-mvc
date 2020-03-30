@@ -3,6 +3,7 @@ CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(45) NOT NULL,
+  `userDetails` int DEFAULT NULL,
   PRIMARY KEY (`idusers`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 

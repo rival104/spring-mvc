@@ -36,7 +36,7 @@
 			<div class="col-md-3 register-left">
 				<img src="https://i.ibb.co/84sRCCv/kissclipart-follower-icon-instagram-icon-profile-icon-6c80833fc4205af7-1.png" alt="" />
 				<h3>Welcome</h3>
-				<p>Register an new Employee or assign user in just a few steps!</p>
+				<p>Register an new Employee or assign an user in just a few steps!</p>
 			</div>
 
 			<div class="col-md-9 register-right">
@@ -70,7 +70,7 @@
 									</div>
 									<div class="form-group">
 										<input type="text" class="form-control" name="designation"
-											placeholder="designation *" value="" />
+											placeholder="designation eg. Manager *" value="" />
 									</div>
 									<div class="form-group"></div>
 									<div class="form-group">
@@ -92,7 +92,7 @@
 											placeholder="Employee Email *" value="" />
 									</div>
 									<div class="form-group">
-										<input type="text" minlength="10" maxlength="10" name="phone"
+										<input type="text" minlength="10" maxlength="15" name="phone"
 											class="form-control" placeholder="Your Phone *" value="" />
 									</div>
 									<div class="form-group">
@@ -104,8 +104,13 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<input type="text" class="form-control" name="techStack"
-											placeholder="Enter Technology Stack *" value="" />
+										<select class="form-control text-capitalize" name="techStack">
+											<option class="hidden" selected disabled>Please
+												Select Specialization</option>
+											<option>java</option>
+											<option>python</option>
+											<option>communication</option>
+										</select>
 									</div>
 									<div class="form-group">
 										<input type="date" class="form-control" name="dob"

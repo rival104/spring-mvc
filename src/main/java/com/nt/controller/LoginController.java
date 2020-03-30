@@ -45,7 +45,7 @@ public class LoginController {
 
 		if (user != null) {
 			logger.info(user.getUsername() + " signed In.");
-			session.setAttribute("username", user.getUsername());
+			session.setAttribute("user", user);
 			session.setAttribute("userId", user.getUserId());
 			session.setAttribute("role", user.getRole());
 			if(user.getRole().equals("hr")) {

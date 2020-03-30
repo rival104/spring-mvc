@@ -47,10 +47,6 @@ public class EmpService {
 		return dao.getEmployeeNames(userId);
 	}
 
-	public UserDetails getUserDetailsById(int id) {
-		return dao.getUserDetailsById(id);
-	}
-
 	public List<Employee> getAllRecordByUser(int userId) {
 		return dao.getAllRecordByUser(userId);
 	}

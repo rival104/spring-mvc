@@ -31,33 +31,11 @@ public class EmpDao {
 							String username = rs.getString(2);
 							String password = rs.getString(3);
 							String role = rs.getString(4);
-							return new User(userId, username, password, role);
+							String userDetail = rs.getString(5);
+							return new User(userId, username, password, role, userDetail);
 						}
 					});
 			return user1;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-		return null;
-	}
-
-	public UserDetails getUserDetailsById(int id) {
-		Object[] args = { id };
-		try {
-			UserDetails userdt = template.queryForObject("SELECT * FROM employee.userdetails WHERE user_Id = ?", args,
-					new RowMapper<UserDetails>() {
-
-						@Override
-						public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
-							int userId = rs.getInt(1);
-							String fullName = rs.getString(2);
-							String address = rs.getString(3);
-							String position = rs.getString(4);
-							return new UserDetails(userId, fullName, address, position);
-						}
-					});
-			return userdt;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
